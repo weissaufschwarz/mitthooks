@@ -1,0 +1,24 @@
+{
+    "name": "@weissaufschwarz/mitthooks-nextjs",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "@weissaufschwarz/mitthooks": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/node": "^22.7.3",
+        "typescript": "^5.6.2",
+        "vitest": "^2.1.2",
+        "@repo/eslint-config": "workspace:*"
+    },
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "test": "vitest run",
+        "lint": "eslint 'src/**/*.ts' --config .eslintrc.cjs",
+        "format": "prettier --write -c ./.prettierrc '**/*.{ts,yaml,yml,json,md}'"
+    },
+    "peerDependencies": {
+        "next": ">=14"
+    }
+}
