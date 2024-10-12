@@ -6,7 +6,8 @@
         "test": "turbo test",
         "lint": "turbo lint",
         "format": "turbo format",
-        "changeset": "pnpm dlx @changesets/cli"
+        "changeset": "pnpm dlx @changesets/cli",
+        "publish-packages": "turbo run build lint test && changeset version && changeset publish"
     },
     "devDependencies": {
         "@changesets/cli": "^2.27.9",
