@@ -7,6 +7,14 @@
         "./*.js": "./dist/*.js",
         "./*": "./dist/*.js"
     },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@github.com/weissaufschwarz/mitthooks.git",
+        "directory": "packages/mitthooks"
+    },
     "scripts": {
         "build": "tsc -p tsconfig.json",
         "test": "vitest run",
