@@ -11,16 +11,19 @@ import {
 import { WebhookVerifier } from "../verification/verify.js";
 import { LoggingWebhookHandler } from "../handler/logging.js";
 import { VerifyingWebhookHandler } from "../handler/verification.js";
+import {ExtensionIDVerificationWebhookHandler} from "../handler/extensionId.js";
 
 export abstract class BaseWebhookHandlerFactory {
     protected logger: Logger = new ConsoleLogger();
     protected readonly extensionStorage: ExtensionStorage;
+    protected readonly extensionID: string;
     protected baseHandlerChain: WebhookHandlerChain = new WebhookHandlerChain();
     protected handlerChainSuffix: WebhookHandler[] = [];
     protected verifyWebhookSignature = true;
 
-    protected constructor(extensionStorage: ExtensionStorage) {
+    protected constructor(extensionStorage: ExtensionStorage, extensionID: string) {
         this.extensionStorage = extensionStorage;
+        this.extensionID = extensionID;
     }
 
     public withLogger(logger: Logger): this {
@@ -72,6 +75,7 @@ export abstract class BaseWebhookHandlerFactory {
 
         this.baseHandlerChain = this.baseHandlerChain.withAdditionalHandlers(
             new LoggingWebhookHandler(this.logger),
+            new ExtensionIDVerificationWebhookHandler(this.extensionID),
         );
 
         if (this.verifyWebhookSignature) {

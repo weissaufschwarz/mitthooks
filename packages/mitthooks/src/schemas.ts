@@ -5,20 +5,38 @@ export const instanceUpdatedKind = "InstanceUpdated";
 export const secretRotatedKind = "SecretRotated";
 export const instanceRemovedKind = "InstanceRemovedFromContext";
 
-export const extensionAddedToContextWebhookSchema = z.object({
+export const webhookMetaSchema = z.object({
+        extensionId: z.string(),
+        contributorId: z.string(),
+    })
+
+export const webhookRequestSchema = z.object({
     id: z.string(),
-    apiVersion: z.string(),
-    kind: z.literal(extensionAddedToContextKind),
-    context: z.object({
-        id: z.string(),
-        kind: z.enum(["customer", "project"]),
+    createdAt: z.string(),
+    target: z.object({
+        method: z.enum(["GET", "POST", "PUT", "DELETE"]),
+        url: z.string(),
     }),
+})
+
+export const webhookContextSchema = z.object({
+    id: z.string(),
+    kind: z.enum(["customer", "project"]),
+})
+
+export const webhookBaseSchema = z.object({
+    apiVersion: z.string(),
+    id: z.string(),
+    context: webhookContextSchema,
+    meta: webhookMetaSchema,
+    request: webhookRequestSchema,
+})
+
+export const extensionAddedToContextWebhookSchema = webhookBaseSchema.extend({
+    kind: z.literal(extensionAddedToContextKind),
     consentedScopes: z.array(z.string()),
     state: z.object({
         enabled: z.boolean(),
-    }),
-    meta: z.object({
-        createdAt: z.string().optional(),
     }),
     secret: z.string(),
 });
@@ -27,20 +45,11 @@ export type ExtensionAddedToContextWebhookBody = z.infer<
     typeof extensionAddedToContextWebhookSchema
 >;
 
-export const instanceUpdatedWebhookSchema = z.object({
-    id: z.string(),
-    apiVersion: z.string(),
+export const instanceUpdatedWebhookSchema = webhookBaseSchema.extend({
     kind: z.literal(instanceUpdatedKind),
-    context: z.object({
-        id: z.string(),
-        kind: z.enum(["customer", "project"]),
-    }),
     consentedScopes: z.array(z.string()),
     state: z.object({
         enabled: z.boolean(),
-    }),
-    meta: z.object({
-        createdAt: z.string().optional(),
     }),
 });
 
@@ -48,9 +57,7 @@ export type InstanceUpdatedWebhookBody = z.infer<
     typeof instanceUpdatedWebhookSchema
 >;
 
-export const secretRotatedWebhookSchema = z.object({
-    id: z.string(),
-    apiVersion: z.string(),
+export const secretRotatedWebhookSchema = webhookBaseSchema.extend({
     kind: z.literal(secretRotatedKind),
     secret: z.string(),
 });
@@ -59,20 +66,11 @@ export type SecretRotatedWebhookBody = z.infer<
     typeof secretRotatedWebhookSchema
 >;
 
-export const instanceRemovedWebhookSchema = z.object({
-    id: z.string(),
-    apiVersion: z.string(),
+export const instanceRemovedWebhookSchema = webhookBaseSchema.extend({
     kind: z.literal(instanceRemovedKind),
-    context: z.object({
-        id: z.string(),
-        kind: z.enum(["customer", "project"]),
-    }),
     consentedScopes: z.array(z.string()),
     state: z.object({
         enabled: z.boolean(),
-    }),
-    meta: z.object({
-        createdAt: z.string().optional(),
     }),
 });
 

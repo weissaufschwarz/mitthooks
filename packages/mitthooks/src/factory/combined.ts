@@ -4,8 +4,8 @@ import type { HandleWebhook } from "../handler/interface.js";
 import { CombinedPersistenceWebhookHandler } from "../handler/combinedPersistence.js";
 
 export class CombinedWebhookHandlerFactory extends BaseWebhookHandlerFactory {
-    public constructor(extensionStorage: ExtensionStorage) {
-        super(extensionStorage);
+    public constructor(extensionStorage: ExtensionStorage, extensionId: string) {
+        super(extensionStorage, extensionId);
     }
 
     public build(): HandleWebhook {

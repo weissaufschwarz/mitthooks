@@ -3,6 +3,10 @@
     "version": "0.1.0",
     "private": false,
     "type": "module",
+    "exports": {
+        "./*.js": "./dist/*.js",
+        "./*": "./dist/*.js"
+    },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"
     },
@@ -11,7 +15,12 @@
         "url": "ssh://git@github.com/weissaufschwarz/mitthooks.git",
         "directory": "packages/mitthooks-nextjs"
     },
-
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "test": "vitest run",
+        "lint": "eslint 'src/**/*.ts' --config .eslintrc.cjs",
+        "format": "prettier --write -c ./.prettierrc '**/*.{ts,yaml,yml,json,md}'"
+    },
     "dependencies": {
         "@weissaufschwarz/mitthooks": "workspace:*"
     },
@@ -20,12 +29,6 @@
         "typescript": "^5.6.2",
         "vitest": "^2.1.2",
         "@repo/eslint-config": "workspace:*"
-    },
-    "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "test": "vitest run",
-        "lint": "eslint 'src/**/*.ts' --config .eslintrc.cjs",
-        "format": "prettier --write -c ./.prettierrc '**/*.{ts,yaml,yml,json,md}'"
     },
     "peerDependencies": {
         "next": ">=14"

@@ -41,3 +41,9 @@ export class UnknownSignatureAlgorithmError extends Error {
         super(`Unknown signature algorithm: ${signatureAlgorithm}`);
     }
 }
+
+export class InvalidExtensionIDError extends Error {
+    public constructor(extensionID: string) {
+        super(`Invalid extension ID in webhook payload: ${extensionID}`);
+    }
+}

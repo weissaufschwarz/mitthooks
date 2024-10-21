@@ -17,7 +17,7 @@ export type ExtensionToBeUpdated = Pick<
 >;
 
 export interface ExtensionStorage {
-    addExtension: (extension: ExtensionToBeAdded) => Promise<void> | void;
+    upsertExtension: (extension: ExtensionToBeAdded) => Promise<void> | void;
     updateExtension: (extension: ExtensionToBeUpdated) => Promise<void> | void;
     rotateSecret: (
         extensionInstanceId: string,

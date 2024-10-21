@@ -28,7 +28,7 @@ export class CombinedPersistenceWebhookHandler implements WebhookHandler {
         const body = this.getValidatedWebhookBody(webhookContent.rawBody);
         switch (body.kind) {
             case extensionAddedToContextKind:
-                await this.extensionStorage.addExtension({
+                await this.extensionStorage.upsertExtension({
                     extensionInstanceId: body.id,
                     contextId: body.context.id,
                     secret: body.secret,
