@@ -18,7 +18,7 @@ export class AddedToContextWebhookHandler implements WebhookHandler {
     ): Promise<void> {
         const body = this.getValidatedWebhookBody(webhookContent.rawBody);
 
-        await this.extensionStorage.addExtension({
+        await this.extensionStorage.upsertExtension({
             extensionInstanceId: body.id,
             contextId: body.context.id,
             secret: body.secret,
