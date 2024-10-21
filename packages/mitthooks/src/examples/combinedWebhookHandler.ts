@@ -2,19 +2,20 @@ import type { ExtensionStorage } from "../storage/extensionStorage.js";
 import { CombinedWebhookHandlerFactory } from "../factory/combined.js";
 import type { HandleWebhook } from "../handler/interface.js";
 
-const fakeExtensionId = "d9c8d9cb-db49-4728-ad06-f63c3a3fe703"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createDefaultCombinedWebhookHandler(
     extensionStorage: ExtensionStorage,
+    extensionId: string,
 ): HandleWebhook {
-    return new CombinedWebhookHandlerFactory(extensionStorage, fakeExtensionId).build();
+    return new CombinedWebhookHandlerFactory(extensionStorage, extensionId).build();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createCustomCombinedWebhookHandler(
     extensionStorage: ExtensionStorage,
+    extensionId: string
 ): HandleWebhook {
-    return new CombinedWebhookHandlerFactory(extensionStorage, fakeExtensionId)
+    return new CombinedWebhookHandlerFactory(extensionStorage, extensionId)
         .withoutLogging()
         .withoutWebhookSignatureVerification()
         .withWebhookHandlerPrefix({
