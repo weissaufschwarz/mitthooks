@@ -18,8 +18,8 @@ export type SeparateWebhookHandlers = {
 };
 
 export class SeparateWebhookHandlerFactory extends BaseWebhookHandlerFactory {
-    public constructor(extensionStorage: ExtensionStorage) {
-        super(extensionStorage);
+    public constructor(extensionStorage: ExtensionStorage, extensionId: string) {
+        super(extensionStorage, extensionId);
     }
 
     public build(): SeparateWebhookHandlers {

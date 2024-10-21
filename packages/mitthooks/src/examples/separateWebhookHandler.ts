@@ -6,18 +6,20 @@ import {
     SeparateWebhookHandlerFactory,
 } from "../factory/separate.js";
 
+const fakeExtensionId = "d9c8d9cb-db49-4728-ad06-f63c3a3fe703"
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createDefaultSeparateWebhookHandler(
     extensionStorage: ExtensionStorage,
 ): SeparateWebhookHandlers {
-    return new SeparateWebhookHandlerFactory(extensionStorage).build();
+    return new SeparateWebhookHandlerFactory(extensionStorage, fakeExtensionId).build();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createCustomSeparateWebhookHandler(
     extensionStorage: ExtensionStorage,
 ): SeparateWebhookHandlers {
-    return new SeparateWebhookHandlerFactory(extensionStorage)
+    return new SeparateWebhookHandlerFactory(extensionStorage, fakeExtensionId)
         .withoutLogging()
         .withoutWebhookSignatureVerification()
         .withWebhookHandlerPrefix({
