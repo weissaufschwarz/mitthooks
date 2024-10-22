@@ -5,21 +5,22 @@ import type {
 import {
     SeparateWebhookHandlerFactory,
 } from "../factory/separate.js";
-
-const fakeExtensionId = "d9c8d9cb-db49-4728-ad06-f63c3a3fe703"
+import {WebhookHandlerChain} from "../handler/chain.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createDefaultSeparateWebhookHandler(
     extensionStorage: ExtensionStorage,
+    extensionId: string,
 ): SeparateWebhookHandlers {
-    return new SeparateWebhookHandlerFactory(extensionStorage, fakeExtensionId).build();
+    return new SeparateWebhookHandlerFactory(extensionStorage, extensionId).build();
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createCustomSeparateWebhookHandler(
     extensionStorage: ExtensionStorage,
+    extensionId: string,
 ): SeparateWebhookHandlers {
-    return new SeparateWebhookHandlerFactory(extensionStorage, fakeExtensionId)
+    return new SeparateWebhookHandlerFactory(extensionStorage, extensionId)
         .withoutLogging()
         .withoutWebhookSignatureVerification()
         .withWebhookHandlerPrefix({
@@ -49,4 +50,21 @@ function createCustomSeparateWebhookHandler(
             },
         )
         .build();
+}
+
+function createCustomSeparateWebhookHandlerWithHandlerForAdded(
+    extensionStorage: ExtensionStorage,
+    extensionId: string,
+): SeparateWebhookHandlers {
+    const handlers =  new SeparateWebhookHandlerFactory(extensionStorage, extensionId).build();
+
+    handlers.ExtensionAddedToContext = WebhookHandlerChain
+        .fromHandlerFunctions(
+            handlers.ExtensionAddedToContext,
+            async (webhookContent) => {
+                console.log("This is only gonna be called for ExtensionAddedToContext");
+            },
+        ).handleWebhook;
+
+    return handlers;
 }

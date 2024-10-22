@@ -7,6 +7,14 @@ export class WebhookHandlerChain implements WebhookHandler {
         this.handlers = handlers;
     }
 
+    public static fromHandlerFunctions(...handlers: HandleWebhook[]): WebhookHandlerChain {
+        return new WebhookHandlerChain(
+            ...handlers.map((handler) => ({
+                handleWebhook: handler,
+            })),
+        );
+    }
+
     public withAdditionalHandlers(
         ...additionalHandlers: WebhookHandler[]
     ): WebhookHandlerChain {
