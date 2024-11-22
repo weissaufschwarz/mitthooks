@@ -1,0 +1,10 @@
+# Use this compose to run the container in its own network, exposing port 8080.
+
+services:
+  devserver:
+    image: mittwald/marketplace-local-dev-server:1.3.46
+    ports:
+      - "8080:8080"
+    volumes:
+      - .env:/.env
+    network_mode: host
