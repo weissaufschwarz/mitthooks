@@ -28,25 +28,25 @@ export class SeparateWebhookHandlerFactory extends BaseWebhookHandlerFactory {
         return {
             [extensionAddedToContextKind]: this.baseHandlerChain
                 .withAdditionalHandlers(
-                    new AddedToContextWebhookHandler(this.extensionStorage),
+                    new AddedToContextWebhookHandler(this.extensionStorage, this.logger),
                     ...this.handlerChainSuffix,
                 )
                 .handleWebhook.bind(this.baseHandlerChain),
             [instanceUpdatedKind]: this.baseHandlerChain
                 .withAdditionalHandlers(
-                    new InstanceUpdatedWebhookHandler(this.extensionStorage),
+                    new InstanceUpdatedWebhookHandler(this.extensionStorage, this.logger),
                     ...this.handlerChainSuffix,
                 )
                 .handleWebhook.bind(this.baseHandlerChain),
             [secretRotatedKind]: this.baseHandlerChain
                 .withAdditionalHandlers(
-                    new SecretRotatedWebhookHandler(this.extensionStorage),
+                    new SecretRotatedWebhookHandler(this.extensionStorage, this.logger),
                     ...this.handlerChainSuffix,
                 )
                 .handleWebhook.bind(this.baseHandlerChain),
             [instanceRemovedKind]: this.baseHandlerChain
                 .withAdditionalHandlers(
-                    new InstanceRemovedWebhookHandler(this.extensionStorage),
+                    new InstanceRemovedWebhookHandler(this.extensionStorage, this.logger),
                     ...this.handlerChainSuffix,
                 )
                 .handleWebhook.bind(this.baseHandlerChain),

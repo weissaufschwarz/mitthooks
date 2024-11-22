@@ -81,13 +81,13 @@ export abstract class BaseWebhookHandlerFactory {
 
         this.baseHandlerChain = this.baseHandlerChain.withAdditionalHandlers(
             new LoggingWebhookHandler(this.logger),
-            new ExtensionIDVerificationWebhookHandler(this.extensionID),
+            new ExtensionIDVerificationWebhookHandler(this.extensionID, this.logger),
         );
 
         if (this.verifyWebhookSignature) {
             this.baseHandlerChain =
                 this.baseHandlerChain.withAdditionalHandlers(
-                    new VerifyingWebhookHandler(webhookVerifier),
+                    new VerifyingWebhookHandler(webhookVerifier, this.logger),
                 );
         }
     }
