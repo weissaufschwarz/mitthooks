@@ -20,6 +20,7 @@ export abstract class BaseWebhookHandlerFactory {
     protected baseHandlerChain: WebhookHandlerChain = new WebhookHandlerChain();
     protected handlerChainSuffix: WebhookHandler[] = [];
     protected verifyWebhookSignature = true;
+    protected mittwaldAPIURL: string | undefined;
 
     protected constructor(extensionStorage: ExtensionStorage, extensionID: string) {
         this.extensionStorage = extensionStorage;
@@ -33,6 +34,11 @@ export abstract class BaseWebhookHandlerFactory {
 
     public withoutLogging(): this {
         this.logger = new NoopLogger();
+        return this;
+    }
+
+    public withMittwaldAPIURL(url: string): this {
+        this.mittwaldAPIURL = url;
         return this;
     }
 
@@ -59,7 +65,7 @@ export abstract class BaseWebhookHandlerFactory {
 
     protected buildWebhookVerifier(): WebhookVerifier {
         const publicKeyProvider = new CachingPublicKeyProvider(
-            APIPublicKeyProvider.newWithUnauthenticatedAPIClient(),
+            APIPublicKeyProvider.newWithUnauthenticatedAPIClient(this.mittwaldAPIURL)
         );
 
         return new WebhookVerifier(this.logger, publicKeyProvider);
