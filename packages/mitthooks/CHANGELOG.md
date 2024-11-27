@@ -1,5 +1,12 @@
 # @weissaufschwarz/mitthooks
 
+## 0.2.1
+
+### Patch Changes
+
+-   2012080: BUGFIX: ignore casing of used webhook signature algorithm
+-   534ce88: FEATURE: allow webhook handler without promises
+
 ## 0.2.0
 
 ### Minor Changes
