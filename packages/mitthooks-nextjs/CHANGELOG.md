@@ -1,5 +1,14 @@
 # @weissaufschwarz/mitthooks-nextjs
 
+## 0.1.2
+
+### Patch Changes
+
+-   b868886: BUGFIX: await request headers of nextjs webhook handler.
+-   Updated dependencies [2012080]
+-   Updated dependencies [534ce88]
+    -   @weissaufschwarz/mitthooks@0.2.1
+
 ## 0.1.1
 
 ### Patch Changes
