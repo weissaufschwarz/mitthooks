@@ -28,7 +28,8 @@ export class NextJSWebhookHandler {
     };
 
     private async getWebhookContent(request: Request): Promise<WebhookContent> {
-        const headersList = headers();
+        // eslint-disable-next-line @typescript-eslint/await-thenable
+        const headersList = await headers();
         const signatureSerial = this.getHeader(
             headersList,
             "x-marketplace-signature-serial",

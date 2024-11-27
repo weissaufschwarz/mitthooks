@@ -12,10 +12,14 @@ export class APIPublicKeyProvider implements PublicKeyProvider {
         this.apiClient = apiClient;
     }
 
-    public static newWithUnauthenticatedAPIClient(): APIPublicKeyProvider {
-        return new APIPublicKeyProvider(
-            MittwaldAPIV2Client.newUnauthenticated(),
-        );
+    public static newWithUnauthenticatedAPIClient(mittwaldApiUrl?: string): APIPublicKeyProvider {
+        const apiClient = MittwaldAPIV2Client.newUnauthenticated();
+
+        if (mittwaldApiUrl) {
+            apiClient.axios.defaults.baseURL = mittwaldApiUrl;
+        }
+
+        return new APIPublicKeyProvider(apiClient);
     }
 
     public async getPublicKey(serial: string): Promise<string> {

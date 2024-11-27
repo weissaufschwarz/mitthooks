@@ -52,19 +52,22 @@ function createCustomSeparateWebhookHandler(
         .build();
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars,no-unused-vars
 function createCustomSeparateWebhookHandlerWithHandlerForAdded(
     extensionStorage: ExtensionStorage,
     extensionId: string,
 ): SeparateWebhookHandlers {
     const handlers =  new SeparateWebhookHandlerFactory(extensionStorage, extensionId).build();
 
-    handlers.ExtensionAddedToContext = WebhookHandlerChain
+    const extendedChain = WebhookHandlerChain
         .fromHandlerFunctions(
             handlers.ExtensionAddedToContext,
-            async (webhookContent) => {
+            () => {
                 console.log("This is only gonna be called for ExtensionAddedToContext");
             },
-        ).handleWebhook;
+        )
+
+    handlers.ExtensionAddedToContext = extendedChain.handleWebhook.bind(extendedChain);
 
     return handlers;
 }

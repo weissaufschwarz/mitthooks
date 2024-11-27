@@ -11,7 +11,7 @@ import {
 import { Ed25519SignatureVerificationStrategy } from "./ed25519.js";
 
 export enum SignatureVerificationStrategyType {
-    ED25519 = "ED25519",
+    ED25519 = "ed25519",
 }
 
 export interface SignatureVerificationStrategy {
@@ -51,12 +51,14 @@ export class WebhookVerifier {
         const bodyBuffer = Buffer.from(rawBody, "utf8");
         const publicKeyBuffer = Buffer.from(publicKey, "base64");
 
-        if (!(signatureAlgorithm in this.signatureVerificationStrategyMap)) {
+        const lowercasedSignatureAlgorithm = signatureAlgorithm.toLowerCase();
+
+        if (!(lowercasedSignatureAlgorithm in this.signatureVerificationStrategyMap)) {
             throw new UnknownSignatureAlgorithmError(signatureAlgorithm);
         }
 
         return this.signatureVerificationStrategyMap[
-            signatureAlgorithm as SignatureVerificationStrategyType
+            lowercasedSignatureAlgorithm as SignatureVerificationStrategyType
         ].verify(signatureBuffer, bodyBuffer, publicKeyBuffer);
     }
 
