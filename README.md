@@ -10,4 +10,4 @@ Its target is to provide a simple and easy way to satisfy the requirements of ha
 This repository contains multiple packages due to separation of concerns and modularity. The packages are:
 
 - [`mitthooks`](./packages/mitthooks/README.md): The main package that contains the SDK for handling lifecycle webhooks and factories, helping to instantiate the necessary objects.
-- [`mitthooks-nextjs`](./packages/mitthooks-next/README.md): A package that contains a wrapper for the mitthooks SDK to be used in Next.js app routes.
+- [`mitthooks-nextjs`](./packages/mitthooks-nextjs/README.md): A package that contains a wrapper for the mitthooks SDK to be used in Next.js app routes.
