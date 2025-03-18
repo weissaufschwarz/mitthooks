@@ -1,5 +1,13 @@
 # @weissaufschwarz/mitthooks-nextjs
 
+## 0.1.3
+
+### Patch Changes
+
+-   e33e446: FIx vulnerability: If a Next.js application is performing
+    authorization in middleware based on pathname, it was possible for this
+    authorization to be bypassed.
+
 ## 0.1.2
 
 ### Patch Changes
