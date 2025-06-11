@@ -25,7 +25,7 @@ export class InstanceUpdatedWebhookHandler implements WebhookHandler {
             await this.extensionStorage.updateExtension({
                 extensionInstanceId: body.id,
                 contextId: body.context.id,
-                consentedScopes: body.consentedScopes,
+                consentedScopes: body.consentedScopes ?? [],
                 enabled: body.state.enabled,
             });
         } catch (e) {

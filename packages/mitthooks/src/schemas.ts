@@ -34,7 +34,7 @@ export const webhookBaseSchema = z.object({
 
 export const extensionAddedToContextWebhookSchema = webhookBaseSchema.extend({
     kind: z.literal(extensionAddedToContextKind),
-    consentedScopes: z.array(z.string()),
+    consentedScopes: z.array(z.string()).nullable(),
     state: z.object({
         enabled: z.boolean(),
     }),
@@ -47,7 +47,7 @@ export type ExtensionAddedToContextWebhookBody = z.infer<
 
 export const instanceUpdatedWebhookSchema = webhookBaseSchema.extend({
     kind: z.literal(instanceUpdatedKind),
-    consentedScopes: z.array(z.string()),
+    consentedScopes: z.array(z.string()).nullable(),
     state: z.object({
         enabled: z.boolean(),
     }),
@@ -68,7 +68,7 @@ export type SecretRotatedWebhookBody = z.infer<
 
 export const instanceRemovedWebhookSchema = webhookBaseSchema.extend({
     kind: z.literal(instanceRemovedKind),
-    consentedScopes: z.array(z.string()),
+    consentedScopes: z.array(z.string()).nullable(),
     state: z.object({
         enabled: z.boolean(),
     }),

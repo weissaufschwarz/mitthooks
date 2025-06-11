@@ -34,14 +34,14 @@ export class CombinedPersistenceWebhookHandler implements WebhookHandler {
                         extensionInstanceId: body.id,
                         contextId: body.context.id,
                         secret: body.secret,
-                        consentedScopes: body.consentedScopes,
+                        consentedScopes: body.consentedScopes ?? [],
                     });
                     break;
                 case instanceUpdatedKind:
                     await this.extensionStorage.updateExtension({
                         extensionInstanceId: body.id,
                         contextId: body.context.id,
-                        consentedScopes: body.consentedScopes,
+                        consentedScopes: body.consentedScopes ?? [],
                         enabled: body.state.enabled,
                     });
                     break;
