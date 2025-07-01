@@ -21,7 +21,7 @@ importers:
     dependencies:
       '@mittwald/api-client':
         specifier: ^4.61.1
-        version: 4.157.0
+        version: 4.171.0
       '@noble/ed25519':
         specifier: ^2.1.0
         version: 2.2.3
@@ -1027,8 +1027,8 @@ packages:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
 
-  /@mittwald/api-client-commons@4.129.2:
-    resolution: {integrity: sha512-4fP+cdZ/L8QC0lGeW1ZcFVkecJX4SJz+B4xhG0ZwDp/L/5eNvfmTQnIjyFkg3nIzoM0XFO80O98erU6kEGeQNQ==}
+  /@mittwald/api-client-commons@4.168.0:
+    resolution: {integrity: sha512-S9kCFMkfytloaI9EwaAvp2gmqP+WLp4uK5vhMp9cDzZl7NRZfvloWNN5jN4dZEbzroSofdIGAleGWg7L8SZDww==}
     peerDependencies:
       '@jest/globals': '*'
       '@mittwald/react-use-promise': ^2.6.0
@@ -1039,7 +1039,7 @@ packages:
         optional: true
     dependencies:
       '@types/parse-path': 7.1.0
-      axios: 1.9.0
+      axios: 1.10.0
       parse-path: 7.1.0
       path-to-regexp: 8.2.0
       type-fest: 4.41.0
@@ -1047,15 +1047,15 @@ packages:
       - debug
     dev: false
 
-  /@mittwald/api-client@4.157.0:
-    resolution: {integrity: sha512-GkZLJFjVY/i+7oLO2RXT1nsKIoqc6Z1wb5YS+Ik+P8RRAnBC6HBoCOfd+GtCkh3NYIgDNgvnkDMb9AjExnfjcg==}
+  /@mittwald/api-client@4.171.0:
+    resolution: {integrity: sha512-71QNl1bHQEE426MouUKG7W+9zxyT9pfwFMSGjNTRPpHNAru1JYl+B7tOGX1xu4ohtLYVhcmHXomHLNLpxo/oEQ==}
     peerDependencies:
       '@mittwald/react-use-promise': ^2.6.0
     peerDependenciesMeta:
       '@mittwald/react-use-promise':
         optional: true
     dependencies:
-      '@mittwald/api-client-commons': 4.129.2
+      '@mittwald/api-client-commons': 4.168.0
       browser-or-node: 3.0.0
     transitivePeerDependencies:
       - '@jest/globals'
@@ -2257,11 +2257,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios@1.9.0:
-    resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
+  /axios@1.10.0:
+    resolution: {integrity: sha512-/1xYAC4MP/HEG+3duIhFr4ZQXR4sQXOIe+o6sdqzeykGLx6Upp/1p8MHqhINOvGeP7xyNHe7tsiJByc4SSVUxw==}
     dependencies:
       follow-redirects: 1.15.9
-      form-data: 4.0.2
+      form-data: 4.0.3
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -3391,13 +3391,14 @@ packages:
       is-callable: 1.2.7
     dev: true
 
-  /form-data@4.0.2:
-    resolution: {integrity: sha512-hGfm/slu0ZabnNt4oaRZ6uREyfCj6P4fT/n6A1rGV+Z0VdGXjfOhVUpkn6qVQONHGIFwmveGXyDs75+nr6FM8w==}
+  /form-data@4.0.3:
+    resolution: {integrity: sha512-qsITQPfmvMOSAdeyZ+12I1c+CKSstAFAwu+97zrnWAbIr5u8wfsExUzCesVLC8NgHuRUqNN4Zy6UPWUTRGslcA==}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
       mime-types: 2.1.35
     dev: false
 
