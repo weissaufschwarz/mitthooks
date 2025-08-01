@@ -21,7 +21,7 @@ importers:
     dependencies:
       '@mittwald/api-client':
         specifier: ^4.61.1
-        version: 4.157.0
+        version: 4.192.0
       '@noble/ed25519':
         specifier: ^2.1.0
         version: 2.2.3
@@ -476,24 +476,24 @@ packages:
       prettier: 2.8.8
     dev: true
 
-  /@emnapi/core@1.4.3:
-    resolution: {integrity: sha512-4m62DuCE07lw01soJwPiBGC0nAww0Q+RY70VZ+n49yDIO13yyinhbWCeNnaob0lakDtWQzSdtNWzJeOJt2ma+g==}
+  /@emnapi/core@1.4.5:
+    resolution: {integrity: sha512-XsLw1dEOpkSX/WucdqUhPWP7hDxSvZiY+fsUC14h+FtQ2Ifni4znbBt8punRX+Uj2JG/uDb8nEHVKvrVlvdZ5Q==}
     requiresBuild: true
     dependencies:
-      '@emnapi/wasi-threads': 1.0.2
+      '@emnapi/wasi-threads': 1.0.4
       tslib: 2.8.1
     dev: true
     optional: true
 
-  /@emnapi/runtime@1.4.3:
-    resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
+  /@emnapi/runtime@1.4.5:
+    resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
     optional: true
 
-  /@emnapi/wasi-threads@1.0.2:
-    resolution: {integrity: sha512-5n3nTJblwRi8LlXkJ9eBzu+kZR8Yxcc7ubakyQTFzPMtIhFpUBRbsnc2Dv88IZDIbCDlBiWrknhB4Lsz7mg6BA==}
+  /@emnapi/wasi-threads@1.0.4:
+    resolution: {integrity: sha512-PJR+bOmMOPH8AtcTGAyYNiuJ3/Fcoj2XN/gBEWzDIKh254XO+mM9XoXHk5GNEhodxeMznbg7BlRojVbKN+gC6g==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
@@ -942,7 +942,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@emnapi/runtime': 1.4.3
+      '@emnapi/runtime': 1.4.5
     dev: false
     optional: true
 
@@ -1027,8 +1027,8 @@ packages:
     resolution: {integrity: sha512-9b8mPpKrfeGRuhFH5iO1iwCLeIIsV6+H1sRfxbkoGXIyQE2BTsPd9zqSqQJ+pv5sJ/hT5M1zvOFL02MnEezFug==}
     dev: true
 
-  /@mittwald/api-client-commons@4.129.2:
-    resolution: {integrity: sha512-4fP+cdZ/L8QC0lGeW1ZcFVkecJX4SJz+B4xhG0ZwDp/L/5eNvfmTQnIjyFkg3nIzoM0XFO80O98erU6kEGeQNQ==}
+  /@mittwald/api-client-commons@4.168.0:
+    resolution: {integrity: sha512-S9kCFMkfytloaI9EwaAvp2gmqP+WLp4uK5vhMp9cDzZl7NRZfvloWNN5jN4dZEbzroSofdIGAleGWg7L8SZDww==}
     peerDependencies:
       '@jest/globals': '*'
       '@mittwald/react-use-promise': ^2.6.0
@@ -1039,7 +1039,7 @@ packages:
         optional: true
     dependencies:
       '@types/parse-path': 7.1.0
-      axios: 1.9.0
+      axios: 1.11.0
       parse-path: 7.1.0
       path-to-regexp: 8.2.0
       type-fest: 4.41.0
@@ -1047,28 +1047,28 @@ packages:
       - debug
     dev: false
 
-  /@mittwald/api-client@4.157.0:
-    resolution: {integrity: sha512-GkZLJFjVY/i+7oLO2RXT1nsKIoqc6Z1wb5YS+Ik+P8RRAnBC6HBoCOfd+GtCkh3NYIgDNgvnkDMb9AjExnfjcg==}
+  /@mittwald/api-client@4.192.0:
+    resolution: {integrity: sha512-z0uMAqrtk7KYzbMvJEZzyirqGdi7HMylqzQY9OhQp2dQFpvlU83DzY4Ky07On5P4th/Hpodb3gCZacwBI2yTqQ==}
     peerDependencies:
       '@mittwald/react-use-promise': ^2.6.0
     peerDependenciesMeta:
       '@mittwald/react-use-promise':
         optional: true
     dependencies:
-      '@mittwald/api-client-commons': 4.129.2
+      '@mittwald/api-client-commons': 4.168.0
       browser-or-node: 3.0.0
     transitivePeerDependencies:
       - '@jest/globals'
       - debug
     dev: false
 
-  /@napi-rs/wasm-runtime@0.2.11:
-    resolution: {integrity: sha512-9DPkXtvHydrcOsopiYpUgPHpmj0HWZKMUnL2dZqpvC42lsratuBG06V5ipyno0fUek5VlFsNQ+AcFATSrJXgMA==}
+  /@napi-rs/wasm-runtime@0.2.12:
+    resolution: {integrity: sha512-ZVWUcfwY4E/yPitQJl481FjFo3K22D6qF0DuFH6Y/nbnE11GY5uguDxZMGXPQ8WQ0128MXQD7TnfHyK4oWoIJQ==}
     requiresBuild: true
     dependencies:
-      '@emnapi/core': 1.4.3
-      '@emnapi/runtime': 1.4.3
-      '@tybys/wasm-util': 0.9.0
+      '@emnapi/core': 1.4.5
+      '@emnapi/runtime': 1.4.5
+      '@tybys/wasm-util': 0.10.0
     dev: true
     optional: true
 
@@ -1449,8 +1449,8 @@ packages:
       tslib: 2.8.1
     dev: false
 
-  /@tybys/wasm-util@0.9.0:
-    resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
+  /@tybys/wasm-util@0.10.0:
+    resolution: {integrity: sha512-VyyPYFlOMNylG45GoAe0xDoLwWuowvf92F9kySqzYh8vmYm7D2u4iUJKa1tOUpS70Ku13ASrOkS4ScXFsTaCNQ==}
     requiresBuild: true
     dependencies:
       tslib: 2.8.1
@@ -1937,7 +1937,7 @@ packages:
     cpu: [wasm32]
     requiresBuild: true
     dependencies:
-      '@napi-rs/wasm-runtime': 0.2.11
+      '@napi-rs/wasm-runtime': 0.2.12
     dev: true
     optional: true
 
@@ -2257,11 +2257,11 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios@1.9.0:
-    resolution: {integrity: sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==}
+  /axios@1.11.0:
+    resolution: {integrity: sha512-1Lx3WLFQWm3ooKDYZD1eXmoGO9fxYQjrycfHFC8P0sCfQVXyROp0p9PFWBehewBOdCwHc+f/b8I0fMto5eSfwA==}
     dependencies:
-      follow-redirects: 1.15.9
-      form-data: 4.0.2
+      follow-redirects: 1.15.11
+      form-data: 4.0.4
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
@@ -3374,8 +3374,8 @@ packages:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
     dev: true
 
-  /follow-redirects@1.15.9:
-    resolution: {integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==}
+  /follow-redirects@1.15.11:
+    resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -3391,13 +3391,14 @@ packages:
       is-callable: 1.2.7
     dev: true
 
-  /form-data@4.0.2:
-    resolution: {integrity: sha512-hGfm/slu0ZabnNt4oaRZ6uREyfCj6P4fT/n6A1rGV+Z0VdGXjfOhVUpkn6qVQONHGIFwmveGXyDs75+nr6FM8w==}
+  /form-data@4.0.4:
+    resolution: {integrity: sha512-KrGhL9Q4zjj0kiUt5OO4Mr/A/jlI2jDYs5eHBpYHPcBEVSiipAvn2Ko2HnPe20rmcuuvMHNdZFp+4IlGTMF0Ow==}
     engines: {node: '>= 6'}
     dependencies:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       es-set-tostringtag: 2.1.0
+      hasown: 2.0.2
       mime-types: 2.1.35
     dev: false
 
