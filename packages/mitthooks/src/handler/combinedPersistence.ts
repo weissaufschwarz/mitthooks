@@ -35,6 +35,7 @@ export class CombinedPersistenceWebhookHandler implements WebhookHandler {
                         contextId: body.context.id,
                         secret: body.secret,
                         consentedScopes: body.consentedScopes,
+                        variantKey: body.variantKey,
                     });
                     break;
                 case instanceUpdatedKind:
@@ -43,6 +44,7 @@ export class CombinedPersistenceWebhookHandler implements WebhookHandler {
                         contextId: body.context.id,
                         consentedScopes: body.consentedScopes,
                         enabled: body.state.enabled,
+                        variantKey: body.variantKey,
                     });
                     break;
                 case secretRotatedKind:

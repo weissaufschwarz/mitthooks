@@ -27,6 +27,7 @@ export class AddedToContextWebhookHandler implements WebhookHandler {
                 contextId: body.context.id,
                 secret: body.secret,
                 consentedScopes: body.consentedScopes,
+                variantKey: body.variantKey,
             });
         } catch (e) {
             this.logger.error(`Failed to upsert extension: ${(e as Error).toString()}`);

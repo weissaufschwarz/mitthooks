@@ -4,16 +4,17 @@ export interface Extension {
     consentedScopes: string[];
     secret: string;
     enabled: boolean;
+    variantKey: string;
 }
 
 export type ExtensionToBeAdded = Pick<
     Extension,
-    "extensionInstanceId" | "contextId" | "consentedScopes" | "secret"
+    "extensionInstanceId" | "contextId" | "consentedScopes" | "secret" | "variantKey"
 >;
 
 export type ExtensionToBeUpdated = Pick<
     Extension,
-    "extensionInstanceId" | "contextId" | "consentedScopes" | "enabled"
+    "extensionInstanceId" | "contextId" | "consentedScopes" | "enabled" | "variantKey"
 >;
 
 export interface ExtensionStorage {
