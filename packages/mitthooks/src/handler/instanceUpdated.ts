@@ -27,6 +27,7 @@ export class InstanceUpdatedWebhookHandler implements WebhookHandler {
                 contextId: body.context.id,
                 consentedScopes: body.consentedScopes,
                 enabled: body.state.enabled,
+                variantKey: body.variantKey,
             });
         } catch (e) {
             this.logger.error(`Failed to update extension: ${(e as Error).toString()}`);
