@@ -30,6 +30,7 @@ export const webhookBaseSchema = z.object({
     context: webhookContextSchema,
     meta: webhookMetaSchema,
     request: webhookRequestSchema,
+    variantKey: z.string(),
 })
 
 export const extensionAddedToContextWebhookSchema = webhookBaseSchema.extend({
