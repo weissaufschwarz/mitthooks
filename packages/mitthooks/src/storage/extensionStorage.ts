@@ -4,7 +4,7 @@ export interface Extension {
     consentedScopes: string[];
     secret: string;
     enabled: boolean;
-    variantKey: string;
+    variantKey?: string;
 }
 
 export type ExtensionToBeAdded = Pick<
