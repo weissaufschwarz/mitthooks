@@ -1,33 +1,9 @@
-import { headers } from "next/headers.js";
-import type { HandleWebhook } from "@weissaufschwarz/mitthooks/handler/interface";
-import * as errorTypes from "@weissaufschwarz/mitthooks/errors";
-import type { WebhookContent } from "@weissaufschwarz/mitthooks/webhook";
+import {headers} from "next/headers.js";
+import type {WebhookContent} from "@weissaufschwarz/mitthooks/webhook";
+import {AbstractWebhookHandlingWrapper} from "@weissaufschwarz/mitthooks/bootstrapping/abstract-wrapper";
 
-export class NextJSWebhookHandler {
-    private readonly delegate: HandleWebhook;
-    public constructor(handleWebhook: HandleWebhook) {
-        this.delegate = handleWebhook;
-    }
-
-    public async handleWebhook(request: Request): Promise<Response> {
-        const webhookContent = await this.getWebhookContent(request);
-
-        try {
-            await this.delegate(webhookContent);
-        } catch (e) {
-            return this.handleWebhookHandlerError(e as Error);
-        }
-
-        return new Response("Webhook handled successfully", {
-            status: 200,
-        });
-    }
-
-    private getHeader = (headersList: Headers, headerName: string): string => {
-        return headersList.get(headerName) ?? "";
-    };
-
-    private async getWebhookContent(request: Request): Promise<WebhookContent> {
+export class NextJSWebhookHandler extends AbstractWebhookHandlingWrapper {
+    protected async getWebhookContent(request: Request): Promise<WebhookContent> {
         // eslint-disable-next-line @typescript-eslint/await-thenable
         const headersList = await headers();
         const signatureSerial = this.getHeader(
@@ -55,51 +31,7 @@ export class NextJSWebhookHandler {
         };
     }
 
-    private handleWebhookHandlerError(e: Error): Response {
-        if (
-            this.isErrorInstanceOfAnyOf(
-                e,
-                errorTypes.UnknownSignatureAlgorithmError,
-                errorTypes.FailedToFetchPublicKey,
-            )
-        ) {
-            return new Response(e.message, {
-                status: 500,
-            });
-        }
-
-        if (
-            this.isErrorInstanceOfAnyOf(
-                e,
-                errorTypes.MissingBodyError,
-                errorTypes.MissingSignatureError,
-                errorTypes.MissingSignatureSerialError,
-                errorTypes.MissingSignatureAlgorithmError,
-                errorTypes.InvalidBodyError,
-            )
-        ) {
-            return new Response(e.message, {
-                status: 400,
-            });
-        }
-
-        console.error("Unknown error occured", e);
-        return new Response("Unknown error occured", {
-            status: 500,
-        });
-    }
-
-    private isErrorInstanceOfAnyOf(
-        error: Error,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ...thingsToCompareWith: any[]
-    ): boolean {
-        for (const errorToCompareWith of thingsToCompareWith) {
-            if (error instanceof errorToCompareWith) {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    private getHeader = (headersList: Headers, headerName: string): string => {
+        return headersList.get(headerName) ?? "";
+    };
 }
