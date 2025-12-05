@@ -31,6 +31,6 @@
         "@repo/eslint-config": "workspace:*"
     },
     "peerDependencies": {
-        "next": ">=14.2.15"
+        "next": ">=15.0.5"
     }
 }
