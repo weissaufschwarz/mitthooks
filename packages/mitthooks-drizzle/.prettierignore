@@ -1,0 +1,4 @@
+dist
+.prettierrc
+tsconfig.json
+src/examples/**/*
