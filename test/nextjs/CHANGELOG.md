@@ -1,5 +1,13 @@
 # @repo/nextjs
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [6dda834]
+  - @weissaufschwarz/mitthooks@0.3.0
+  - @weissaufschwarz/mitthooks-nextjs@0.1.7
+
 ## 0.1.2
 
 ### Patch Changes

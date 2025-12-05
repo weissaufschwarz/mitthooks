@@ -1,5 +1,12 @@
 # @weissaufschwarz/mitthooks
 
+## 0.3.0
+
+### Minor Changes
+
+- 6dda834: added a generic http wrapper for mitthooks to be used for raw http
+  servers, tanstack router, etc.
+
 ## 0.2.2
 
 ### Patch Changes

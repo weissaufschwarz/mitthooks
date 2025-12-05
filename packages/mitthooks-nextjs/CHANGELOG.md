@@ -1,5 +1,12 @@
 # @weissaufschwarz/mitthooks-nextjs
 
+## 0.1.7
+
+### Patch Changes
+
+- Updated dependencies [6dda834]
+    - @weissaufschwarz/mitthooks@0.3.0
+
 ## 0.1.3
 
 ### Patch Changes
