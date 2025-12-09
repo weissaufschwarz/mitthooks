@@ -14,18 +14,20 @@ const timestamps = {
 export const context = pgEnum("context", ["customer", "project"]);
 
 export const buildExtensionInstanceTable = (
-    secretColumn: EncryptedTextColumn,
+  secretColumn: EncryptedTextColumn,
+  additionalColumns: Record<string, any> = {}
 ) =>
-    pgTable("extension_instance", {
-        id: varchar("id", { length: 36 }).primaryKey(),
-        contextId: varchar({ length: 36 }).notNull(),
-        context: context().notNull().default("project"),
-        active: boolean().notNull(),
-        variantKey: text("variant_key"),
-        consentedScopes: text("consented_scopes").array().notNull(),
-        secret: secretColumn(),
-        ...timestamps,
-    });
+  pgTable("extension_instance", {
+    id: varchar("id", { length: 36 }).primaryKey(),
+    contextId: varchar({ length: 36 }).notNull(),
+    context: context().notNull().default("project"),
+    active: boolean().notNull(),
+    variantKey: text("variant_key"),
+    consentedScopes: text("consented_scopes").array().notNull(),
+    secret: secretColumn(),
+    ...timestamps,
+    ...additionalColumns,
+  });
 
 export type ExtensionInstanceTable = ReturnType<
     typeof buildExtensionInstanceTable
