@@ -217,6 +217,68 @@ function createCustomSeparateWebhookHandlerWithHandlerForAdded(
 }
 ```
 
+## Generic HTTP Wrapper
+
+The `HttpWebhookHandler` is a generic wrapper that converts HTTP requests into webhook content and delegates them to a webhook handler.
+It extracts the necessary signature headers from the request, reads the request body, and converts errors into appropriate HTTP responses.
+
+This wrapper is useful when you want to handle webhooks directly from HTTP requests without framework-specific code.
+
+### Basic Usage
+
+```typescript
+import { HttpWebhookHandler } from "@weissaufschwarz/mitthooks/bootstrapping/http-wrapper.js";
+import { CombinedWebhookHandlerFactory } from "@weissaufschwarz/mitthooks/factory/combined.js";
+import type { ExtensionStorage } from "@weissaufschwarz/mitthooks/storage/extensionStorage.js";
+
+function createHttpWebhookHandler(
+    extensionStorage: ExtensionStorage,
+    extensionId: string,
+): HttpWebhookHandler {
+    const handleWebhook = new CombinedWebhookHandlerFactory(
+        extensionStorage,
+        extensionId,
+    ).build();
+
+    return new HttpWebhookHandler(handleWebhook);
+}
+
+// Usage with a standard Request object
+const handler = createHttpWebhookHandler(storage, "your-extension-id");
+const response = await handler.handleWebhook(request);
+```
+
+### How It Works
+
+The `HttpWebhookHandler` performs the following steps:
+
+1. **Extract Headers**: Reads the signature-related headers from the incoming request:
+   - `X-Marketplace-Signature-Serial`
+   - `X-Marketplace-Signature-Algorithm`
+   - `X-Marketplace-Signature`
+
+2. **Read Body**: Reads the raw request body as text
+
+3. **Delegate to Handler**: Passes the webhook content to the configured handler chain
+
+4. **Error Handling**: Converts handler errors into appropriate HTTP responses:
+   - `400 Bad Request`: Missing or invalid request data
+   - `500 Internal Server Error`: Server-side processing errors
+   - `200 OK`: Successfully processed webhook
+
+5. The wrapper automatically handles mitthooks specific error types
+
+### Framework Integration
+
+The `HttpWebhookHandler` works with the standard Web API `Request` and `Response` objects, making it compatible with:
+- Node.js HTTP servers
+- Cloudflare Workers
+- Deno
+- Bun
+- Any framework supporting standard Request/Response objects like tanstack Start
+
+For framework-specific integrations (like Next.js), see the dedicated packages like `mitthooks-nextjs`.
+
 ## ExtensionStorage
 
 The `ExtensionStorage` is an interface that you have to implement to store the extension instances.
