@@ -11,9 +11,6 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write  # Required for OIDC / Trusted Publishing
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -26,9 +23,6 @@ jobs:
           
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
-
-      - name: Upgrade npm for Trusted Publishing
-        run: npm install -g npm@latest
 
       - name: Install Dependencies
         run: pnpm install
