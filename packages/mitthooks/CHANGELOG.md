@@ -1,5 +1,12 @@
 # @weissaufschwarz/mitthooks
 
+## 0.3.1
+
+### Patch Changes
+
+- 5a07655: documented how to use the HttpWebhookHandler
+- 63c4e5d: made import parts of mitthooks more accessible to import
+
 ## 0.3.0
 
 ### Minor Changes
