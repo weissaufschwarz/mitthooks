@@ -39,6 +39,7 @@ export class PgExtensionStorage implements ExtensionStorage {
                     active: true,
                     consentedScopes: extension.consentedScopes,
                     secret: extension.secret,
+                    variantKey: extension.variantKey ?? null,
                 })
                 .onConflictDoUpdate({
                     target: this.extensionInstanceTable.id,
@@ -48,6 +49,7 @@ export class PgExtensionStorage implements ExtensionStorage {
                         context: "project",
                         active: true,
                         secret: extension.secret,
+                        variantKey: extension.variantKey ?? null,
                     },
                 });
         } catch (error) {
@@ -68,6 +70,7 @@ export class PgExtensionStorage implements ExtensionStorage {
                     context: "project",
                     active: extension.enabled,
                     consentedScopes: extension.consentedScopes,
+                    variantKey: extension.variantKey ?? null,
                 })
                 .where(
                     eq(
