@@ -15,6 +15,17 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
   && apt-get update && apt-get install -y gh \
   && rm -rf /var/lib/apt/lists/*
 
+# Pre-configure gh as git's credential helper and rewrite SSH origins to HTTPS
+# system-wide, so the agent inside the sandbox can `git push` against GitHub
+# without `gh auth setup-git` or `git remote set-url`. GH_TOKEN is injected at
+# runtime via .sandcastle/.env. `--system` (not `--global`) so the `agent` user
+# inherits the config; `insteadOf` keeps the worktree's .git/config untouched
+# (a runtime `git remote set-url` would leak back to the host clone because
+# `git worktree add` shares config with the main repo).
+RUN git config --system credential.helper '!gh auth git-credential' \
+ && git config --system url."https://github.com/".insteadOf "git@github.com:" \
+ && git config --system --add url."https://github.com/".insteadOf "ssh://git@github.com/"
+
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 RUN corepack enable
 RUN corepack prepare pnpm@latest --activate
