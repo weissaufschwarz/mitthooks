@@ -1,5 +1,21 @@
 # @weissaufschwarz/mitthooks
 
+## 0.3.1
+
+### Patch Changes
+
+- 5a07655: documented how to use the HttpWebhookHandler
+- 4ebd638: fixed webhook signature verification being ineffective
+
+    `VerifyingWebhookHandler` awaited the verifier but discarded its result, so
+    the chain only stopped when verification _threw_. `@noble/ed25519` resolves
+    to `false` for a signature mismatch instead of throwing, which meant any
+    request carrying well-formed signature headers was forwarded to the handler
+    chain as if it had been verified. The handler now rejects with
+    `InvalidSignatureError` unless verification explicitly returns `true`.
+
+- 63c4e5d: made import parts of mitthooks more accessible to import
+
 ## 0.3.0
 
 ### Minor Changes
