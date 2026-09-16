@@ -47,3 +47,9 @@ export class InvalidExtensionIDError extends Error {
         super(`Invalid extension ID in webhook payload: ${extensionID}`);
     }
 }
+
+export class InvalidSignatureError extends Error {
+    public constructor() {
+        super("InvalidSignatureError");
+    }
+}
