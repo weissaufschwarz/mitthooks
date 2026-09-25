@@ -3,6 +3,10 @@
     "version": "0.3.1",
     "private": false,
     "type": "module",
+    "files": [
+        "dist",
+        "CHANGELOG.md"
+    ],
     "exports": {
         "./*.js": "./dist/*.js",
         "./*": "./dist/*.js",
